@@ -133,10 +133,8 @@
             "smape": 41.48
         },
         "Random Forest": {
-            "mae": 0.21,
-            "rmse": 0.21,
-            "smape": 6.25,
-            "r2": 0.95
+            "r2": 0.95,
+            "smape": 6.25
         }
     },
     "dataset": [
