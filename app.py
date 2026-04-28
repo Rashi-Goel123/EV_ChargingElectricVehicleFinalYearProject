@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 # ===============================
-# DEFAULT LOAD
+# MAIN ROUTE
 # ===============================
 @app.route('/data', methods=['GET', 'POST'])
 def data():
@@ -20,13 +20,13 @@ def data():
             if os.path.exists("output.json"):
                 with open("output.json", "r") as f:
                     data = json.load(f)
-                print("✅ Loaded default data")
+                print("✅ Loaded output.json")
                 return jsonify(data)
-            return jsonify({"error": "No default file"}), 404
+            return jsonify({"error": "No data found"}), 404
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
-    # ===== POST (UPLOAD CSV) =====
+    # ===== POST =====
     elif request.method == 'POST':
         try:
             file = request.files.get('file')
@@ -38,14 +38,44 @@ def data():
             print("✅ CSV uploaded:", file.filename)
 
             # ===============================
-            # 🔥 DYNAMIC DATA GENERATION
+            # ✅ FIXED MODEL RESULTS (FROM PAPER)
             # ===============================
-            summary = {
-                "mae": round(np.random.uniform(0.3, 1.0), 2),
-                "rmse": round(np.random.uniform(0.5, 1.5), 2),
-                "smape": round(np.random.uniform(5, 50), 2)
+            model_comparison = {
+                "Linear Regression": {
+                    "mae": 0.86,
+                    "rmse": 1.08,
+                    "smape": 40.24
+                },
+                "SVR": {
+                    "mae": 1.00,
+                    "rmse": 1.28,
+                    "smape": 47.11
+                },
+                "XGBoost": {
+                    "mae": 0.93,
+                    "rmse": 1.19,
+                    "smape": 43.18
+                },
+                "Random Forest": {
+                    "mae": 0.58,
+                    "rmse": 0.85,
+                    "smape": 6.24
+                },
+                "LSTM": {
+                    "mae": 0.47,
+                    "rmse": 0.72,
+                    "smape": 5.01
+                }
             }
 
+            # ===============================
+            # ✅ BEST MODEL
+            # ===============================
+            summary = model_comparison["LSTM"]
+
+            # ===============================
+            # GRAPH DATA (can stay dynamic)
+            # ===============================
             graph_data = [
                 {
                     "time": f"{10+i}:00",
@@ -55,6 +85,9 @@ def data():
                 for i in range(6)
             ]
 
+            # ===============================
+            # FORECAST TABLE
+            # ===============================
             lstm_forecast = [
                 {
                     "time": f"{10+i}:00",
@@ -67,23 +100,27 @@ def data():
                 for i in range(6)
             ]
 
-            model_comparison = {
-                "LSTM": {"mae": round(np.random.uniform(0.3, 0.8), 2)},
-                "SVR": {"mae": round(np.random.uniform(0.7, 1.2), 2)},
-                "Random Forest": {"mae": round(np.random.uniform(0.5, 1.0), 2)},
-                "XGBoost": {"mae": round(np.random.uniform(0.6, 1.1), 2)},
-                "Linear Regression": {"mae": round(np.random.uniform(0.8, 1.3), 2)},
-                "Ensemble": {"mae": round(np.random.uniform(0.5, 1.0), 2)}
-            }
-
-            return jsonify({
+            # ===============================
+            # FINAL RESPONSE
+            # ===============================
+            response_data = {
                 "best_model": "LSTM",
                 "summary": summary,
                 "graph_data": graph_data,
                 "lstm_forecast": lstm_forecast,
                 "model_comparison": model_comparison,
-                "uploaded_preview": df.head(10).to_dict(orient="records")
-            })
+                "dataset": df.head(10).to_dict(orient="records")
+            }
+
+            # ===============================
+            # SAVE TO output.json
+            # ===============================
+            with open("output.json", "w") as f:
+                json.dump(response_data, f, indent=4)
+
+            print("✅ output.json updated")
+
+            return jsonify(response_data)
 
         except Exception as e:
             return jsonify({"error": str(e)}), 500
