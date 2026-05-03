@@ -5,7 +5,9 @@ import numpy as np
 import json
 import os
 
-app = Flask(__name__)
+from flask import Flask, send_from_directory
+
+app = Flask(__name__, static_folder='ev-dashboard/build', static_url_path='/')
 CORS(app)
 
 # ===============================
@@ -128,9 +130,7 @@ def data():
 
 @app.route('/')
 def home():
-    return "✅ Server Running"
-
-
+    return send_from_directory(app.static_folder, 'index.html')
 if __name__ == "__main__":
     print("🚀 Running on http://127.0.0.1:5000")
     app.run(debug=True)
