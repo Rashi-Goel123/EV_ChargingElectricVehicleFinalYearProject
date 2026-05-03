@@ -8,82 +8,82 @@
     "graph_data": [
         {
             "time": "10:00",
-            "forecasted_power": 546.0,
-            "actual_power": 717.0
+            "forecasted_power": 730.0,
+            "actual_power": 454.0
         },
         {
             "time": "11:00",
-            "forecasted_power": 632.0,
-            "actual_power": 782.0
+            "forecasted_power": 729.0,
+            "actual_power": 617.0
         },
         {
             "time": "12:00",
-            "forecasted_power": 649.0,
-            "actual_power": 772.0
+            "forecasted_power": 536.0,
+            "actual_power": 619.0
         },
         {
             "time": "13:00",
-            "forecasted_power": 744.0,
-            "actual_power": 846.0
+            "forecasted_power": 794.0,
+            "actual_power": 532.0
         },
         {
             "time": "14:00",
-            "forecasted_power": 760.0,
-            "actual_power": 512.0
+            "forecasted_power": 766.0,
+            "actual_power": 829.0
         },
         {
             "time": "15:00",
-            "forecasted_power": 615.0,
-            "actual_power": 748.0
+            "forecasted_power": 533.0,
+            "actual_power": 519.0
         }
     ],
     "lstm_forecast": [
         {
             "time": "10:00",
-            "forecasted_power": 727.0,
-            "actual_power": 512.0,
-            "smape": 5.83,
-            "ev_demand": 394.0,
-            "decision": "Delay Charging"
+            "forecasted_power": 508.0,
+            "actual_power": 764.0,
+            "smape": 21.76,
+            "ev_demand": 110.0,
+            "decision": "Charge Now"
         },
         {
             "time": "11:00",
-            "forecasted_power": 767.0,
-            "actual_power": 475.0,
-            "smape": 11.96,
-            "ev_demand": 103.0,
-            "decision": "Charge Now"
+            "forecasted_power": 716.0,
+            "actual_power": 676.0,
+            "smape": 10.52,
+            "ev_demand": 429.0,
+            "decision": "Delay Charging"
         },
         {
             "time": "12:00",
-            "forecasted_power": 724.0,
-            "actual_power": 734.0,
-            "smape": 23.52,
-            "ev_demand": 375.0,
-            "decision": "Charge Now"
+            "forecasted_power": 709.0,
+            "actual_power": 555.0,
+            "smape": 10.64,
+            "ev_demand": 438.0,
+            "decision": "Delay Charging"
         },
         {
             "time": "13:00",
-            "forecasted_power": 785.0,
-            "actual_power": 743.0,
-            "smape": 17.54,
-            "ev_demand": 597.0,
+            "forecasted_power": 520.0,
+            "actual_power": 843.0,
+            "smape": 21.82,
+            "ev_demand": 268.0,
             "decision": "Charge Now"
         },
         {
             "time": "14:00",
-            "forecasted_power": 525.0,
-            "actual_power": 542.0,
-            "smape": 22.59,
-            "ev_demand": 258.0,
+            "forecasted_power": 780.0,
+            "actual_power": 789.0,
+            "smape": 5.62,
+            "ev_demand": 581.0,
             "decision": "Charge Now"
         },
         {
             "time": "15:00",
-            "forecasted_power": 736.0,
-            "actual_power": 632.0,
-            "smape": 19.59,
-            "ev_demand": 592.0,
+            "forecasted_power": 559.0,
+            "actual_power": 811.0,
+            "smape": 22.53,
+            "ev_demand": 175.0,
             "decision": "Charge Now"
         }
     ],
@@ -117,91 +117,91 @@
     "dataset": [
         {
             "date": "2024-01-01",
-            "temperature_C": 18.0,
-            "air_quality_index": 210.0,
-            "humidity_percent": 52.0,
-            "wind_speed_kmh": 7.3,
+            "temperature_C": 17.5,
+            "air_quality_index": 320.0,
+            "humidity_percent": 49.3,
+            "wind_speed_kmh": 8.1,
             "rain": 0,
-            "charging_level_required": "Level 1"
+            "charging_level_required": "Level 3"
         },
         {
             "date": "2024-01-02",
-            "temperature_C": 15.4,
-            "air_quality_index": 237.0,
-            "humidity_percent": 31.7,
-            "wind_speed_kmh": 14.0,
+            "temperature_C": 14.3,
+            "air_quality_index": 373.0,
+            "humidity_percent": 22.3,
+            "wind_speed_kmh": 17.0,
             "rain": 0,
             "charging_level_required": "Level 3"
         },
         {
             "date": "2024-01-03",
-            "temperature_C": 14.1,
-            "air_quality_index": 168.0,
-            "humidity_percent": 35.5,
-            "wind_speed_kmh": 9.6,
+            "temperature_C": 12.7,
+            "air_quality_index": 237.0,
+            "humidity_percent": 27.3,
+            "wind_speed_kmh": 11.1,
             "rain": 0,
             "charging_level_required": "Level 1"
         },
         {
             "date": "2024-01-04",
-            "temperature_C": 18.2,
-            "air_quality_index": 179.0,
-            "humidity_percent": 43.0,
-            "wind_speed_kmh": 14.2,
+            "temperature_C": 17.7,
+            "air_quality_index": 258.0,
+            "humidity_percent": 37.3,
+            "wind_speed_kmh": 17.2,
             "rain": 0,
             "charging_level_required": "Level 1"
         },
         {
             "date": "2024-01-05",
-            "temperature_C": 12.4,
-            "air_quality_index": 229.0,
-            "humidity_percent": 43.7,
-            "wind_speed_kmh": 8.0,
+            "temperature_C": 10.5,
+            "air_quality_index": 357.0,
+            "humidity_percent": 38.2,
+            "wind_speed_kmh": 9.0,
             "rain": 0,
             "charging_level_required": "Level 3"
         },
         {
             "date": "2024-01-06",
-            "temperature_C": 10.4,
-            "air_quality_index": 155.0,
-            "humidity_percent": 47.8,
-            "wind_speed_kmh": 14.1,
+            "temperature_C": 7.9,
+            "air_quality_index": 209.0,
+            "humidity_percent": 43.7,
+            "wind_speed_kmh": 17.2,
             "rain": 0,
             "charging_level_required": "Level 1"
         },
         {
             "date": "2024-01-07",
-            "temperature_C": 13.6,
-            "air_quality_index": 194.0,
-            "humidity_percent": 50.5,
-            "wind_speed_kmh": 6.8,
+            "temperature_C": 12.0,
+            "air_quality_index": 288.0,
+            "humidity_percent": 47.4,
+            "wind_speed_kmh": 7.4,
             "rain": 0,
             "charging_level_required": "Level 1"
         },
         {
             "date": "2024-01-08",
-            "temperature_C": 14.8,
-            "air_quality_index": 241.0,
-            "humidity_percent": 31.0,
-            "wind_speed_kmh": 8.9,
+            "temperature_C": 13.5,
+            "air_quality_index": 382.0,
+            "humidity_percent": 21.4,
+            "wind_speed_kmh": 10.2,
             "rain": 0,
             "charging_level_required": "Level 3"
         },
         {
             "date": "2024-01-09",
-            "temperature_C": 16.8,
-            "air_quality_index": 168.0,
-            "humidity_percent": 46.4,
-            "wind_speed_kmh": 19.5,
+            "temperature_C": 16.0,
+            "air_quality_index": 237.0,
+            "humidity_percent": 41.9,
+            "wind_speed_kmh": 24.4,
             "rain": 0,
             "charging_level_required": "Level 1"
         },
         {
             "date": "2024-01-10",
-            "temperature_C": 8.2,
-            "air_quality_index": 239.0,
-            "humidity_percent": 58.2,
-            "wind_speed_kmh": 14.0,
+            "temperature_C": 5.2,
+            "air_quality_index": 379.0,
+            "humidity_percent": 57.6,
+            "wind_speed_kmh": 17.0,
             "rain": 0,
             "charging_level_required": "Level 3"
         }
