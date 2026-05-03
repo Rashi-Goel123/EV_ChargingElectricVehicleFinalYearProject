@@ -21,7 +21,7 @@ function App() {
   const fetchDefaultData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://127.0.0.1:5000/data");
+      const res = await axios.get("https://ev-2ynv.onrender.com/data");
       setData(res.data);
       console.log("✅ Default data loaded");
     } catch (err) {
@@ -55,7 +55,7 @@ function App() {
       console.log("🚀 Uploading CSV...");
 
       const res = await axios.post(
-        "http://127.0.0.1:5000/data",
+        "https://ev-2ynv.onrender.com/data",
         formData
       );
 
