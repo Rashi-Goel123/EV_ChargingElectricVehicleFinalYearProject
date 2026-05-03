@@ -7,7 +7,7 @@ import DatasetTable from "./components/DatasetTable";
 import LoadingSpinner from "./components/LoadingSpinner";
 import LineChartComponent from "./components/LineChartComponent";
 
-// 🔥 CHANGE THIS ONLY IF BACKEND URL CHANGES
+// 🔥 YOUR BACKEND URL
 const API = "https://ev-2ynv.onrender.com";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
   const [error, setError] = useState("");
   const [file, setFile] = useState(null);
 
-  // ✅ AUTO LOAD DEFAULT DATA (WITH RETRY)
+  // ✅ LOAD DEFAULT DATA
   useEffect(() => {
     fetchDefaultData();
   }, []);
@@ -45,7 +45,7 @@ function App() {
     console.log("📂 File selected:", selected);
   };
 
-  // 🚀 RUN MODEL (UPLOAD CSV)
+  // 🚀 UPLOAD CSV (FIXED → USING /data)
   const handleRunModel = async () => {
     if (!file) {
       alert("⚠️ Please select file first");
@@ -61,8 +61,8 @@ function App() {
 
       console.log("🚀 Uploading CSV...");
 
-      // 🔥 FIXED ENDPOINT
-      const res = await axios.post(`${API}/upload`, formData, {
+      // ✅ CORRECT ENDPOINT
+      const res = await axios.post(`${API}/data`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -79,13 +79,13 @@ function App() {
       alert("✅ New dataset loaded!");
     } catch (err) {
       console.error("❌ Upload Error:", err.response || err.message);
-      setError("❌ Upload failed. Check backend or API.");
+      setError("❌ Upload failed. Check backend.");
     } finally {
       setLoading(false);
     }
   };
 
-  // 🔥 SELECT DATASET
+  // 🔥 DATA SOURCE
   const datasetToShow = data?.uploaded_preview || data?.dataset;
 
   return (
