@@ -7,13 +7,16 @@ import DatasetTable from "./components/DatasetTable";
 import LoadingSpinner from "./components/LoadingSpinner";
 import LineChartComponent from "./components/LineChartComponent";
 
+// 🔥 CHANGE THIS ONLY IF BACKEND URL CHANGES
+const API = "https://ev-2ynv.onrender.com";
+
 function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [file, setFile] = useState(null);
 
-  // ✅ AUTO LOAD DEFAULT DATA
+  // ✅ AUTO LOAD DEFAULT DATA (WITH RETRY)
   useEffect(() => {
     fetchDefaultData();
   }, []);
@@ -21,11 +24,15 @@ function App() {
   const fetchDefaultData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://ev-2ynv.onrender.com/data");
+      setError("");
+
+      const res = await axios.get(`${API}/data`);
       setData(res.data);
+
       console.log("✅ Default data loaded");
     } catch (err) {
-      console.log("❌ Backend not ready");
+      console.log("⏳ Backend sleeping... retrying in 3s");
+      setTimeout(fetchDefaultData, 3000);
     } finally {
       setLoading(false);
     }
@@ -54,35 +61,35 @@ function App() {
 
       console.log("🚀 Uploading CSV...");
 
-      const res = await axios.post(
-        "https://ev-2ynv.onrender.com/data",
-        formData
-      );
+      // 🔥 FIXED ENDPOINT
+      const res = await axios.post(`${API}/upload`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-      console.log("✅ Response:", res.data);
+      console.log("✅ Upload response:", res.data);
 
-      // 🔥 FORCE UI UPDATE
+      // 🔥 FORCE UI REFRESH
       setData(null);
       setTimeout(() => {
         setData(res.data);
-      }, 100);
+      }, 200);
 
       alert("✅ New dataset loaded!");
-
     } catch (err) {
-      console.error(err);
-      setError("❌ Upload failed. Check backend.");
+      console.error("❌ Upload Error:", err.response || err.message);
+      setError("❌ Upload failed. Check backend or API.");
     } finally {
       setLoading(false);
     }
   };
 
-  // 🔥 ALWAYS SHOW LATEST DATASET
+  // 🔥 SELECT DATASET
   const datasetToShow = data?.uploaded_preview || data?.dataset;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-6">
-
       <div className="max-w-7xl mx-auto">
 
         {/* HEADER */}
